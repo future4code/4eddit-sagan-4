@@ -3,10 +3,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
 import LoginPage from "../LoginPage";
 
-
-
-
-const routes = {
+export const routes = {
   root: "/"
   // Outras rotas aqui
 };
