@@ -13,15 +13,13 @@ class Feed extends React.Component {
         this.props.fetchFeed("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkR5RGtTWlRPaDhLS2V1TDZDR3hIIiwiZW1haWwiOiJhbmRyaXVzLnJvY2hhbGF6YXJpbm9AZ21haWwuY29tIiwidXNlcm5hbWUiOiJhbmRyaXVzcmwiLCJpYXQiOjE1ODU2NjI0Njl9.v9BopDmhppBAwdyTqE2An3lVsHruXdGTR7GaiZje5t8")
     }
 
-    listFeed = ()=>{
-        console.log(typeof(this.props.feedList))
-        const feed = this.props.feedList
-        return(
+    listFeed = () => {
+        return (
             <div>
-                testando
-                {feed.map(post=>{
-                    return(
-                        <div>{post.title}</div>
+                <h2>Feed</h2>
+                {this.props.feedList.map(post => {
+                    return (
+                        <Post key={post.id} post={post}/>
                     )
                 })}
             </div>
@@ -31,7 +29,7 @@ class Feed extends React.Component {
     render() {
         return (
             <div>
-                {this.props.feedList !== undefined ? this.listFeed():<div>Carregando</div>}
+                {this.props.feedList !== undefined ? this.listFeed() : <div>Carregando</div>}
             </div>
         )
     }
