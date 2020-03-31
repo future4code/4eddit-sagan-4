@@ -23,3 +23,13 @@ export const fetchFeed = (auth) => async (dispatch) => {
         console.error(error)
     }
 }
+
+export const votePost = (postId, direction, auth) => async (dispatch) => {
+    try {
+        const response = await axios.put(`${baseUrl}/${postId}/vote`, {"direction": parseInt(direction)}, {headers:{auth:auth}})
+        alert("Você votou")
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
