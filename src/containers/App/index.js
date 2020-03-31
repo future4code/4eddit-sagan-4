@@ -8,6 +8,7 @@ import { createBrowserHistory } from "history";
 import { createStore, applyMiddleware, compose } from "redux";
 import { generateReducers } from "../../reducers";
 import { routerMiddleware } from "connected-react-router";
+import Menu from "../Menu";
 
 export const history = createBrowserHistory();
 
@@ -24,6 +25,7 @@ export const App = () => (
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
+      <Menu />
       <Router history={history} />
     </MuiThemeProvider>
   </Provider>
