@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { login } from "../../actions/login";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -18,29 +17,27 @@ class LoginPage extends Component {
     });
   }
 
-  handleOnSubmit = event => {
-    event.preventDefault();
-
+  signIn = () => {
     this.props.login(this.state.email, this.state.password)
   }
 
   render() {
     return (
       <div>
-      <input onChange={this.handleFieldChange} 
-        name="email"
-        type="email"
-        label="E-mail"
-        value={this.state.email}
-      />
-      <input
-        onChange={this.handleFieldChange}
-        name="password"
-        type="password"
-        label="Password"
-        value={this.state.password}
-      />
-      <button onSubmit={this.handleOnSubmit}> LOGIN </button>
+        <input onChange={this.handleFieldChange} 
+          name="email"
+          type="email"
+          label="E-mail"
+          value={this.state.email}
+        />
+        <input
+          onChange={this.handleFieldChange}
+          name="password"
+          type="password"
+          label="Password"
+          value={this.state.password}
+        />
+        <button onClick={() => this.signIn()}> LOGIN </button>
       </div>
     );
   }
