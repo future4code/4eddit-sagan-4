@@ -21,8 +21,7 @@ class DetailPost extends Component {
         }
 
         if (token && this.props.getPostDetail) {
-            this.props.getPostDetail("1hb1TzCJBRMac89DLX1W") 
-            //Lembrar de quando for chamar, trocar o id passado acima por this.props.id
+            this.props.getPostDetail(this.props.post.id) 
         }
 
     }
@@ -47,7 +46,6 @@ class DetailPost extends Component {
     render() {
         return (
             <div>
-                <button onClick={() => window.localStorage.removeItem('token')}> Logout </button>
                 <p> Usuário: {this.props.post.username}</p>
                 <p> Post: {this.props.post.text} </p>
                 <label for="comment"> Deixe seu comentário</label>
