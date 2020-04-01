@@ -1,7 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
+import { push } from 'connected-react-router';
+import { routes } from '../Router';
 import { fetchFeed } from "../../actions/feed"
+import {setLogged} from "../../actions/menu"
 import Post from "../../components/Post"
 
 class Feed extends React.Component {
@@ -10,7 +13,16 @@ class Feed extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchFeed("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkR5RGtTWlRPaDhLS2V1TDZDR3hIIiwiZW1haWwiOiJhbmRyaXVzLnJvY2hhbGF6YXJpbm9AZ21haWwuY29tIiwidXNlcm5hbWUiOiJhbmRyaXVzcmwiLCJpYXQiOjE1ODU2NjI0Njl9.v9BopDmhppBAwdyTqE2An3lVsHruXdGTR7GaiZje5t8")
+        const token = window.localStorage.getItem("token")
+        console.log(token)
+        if (token === null) {
+            this.props.setLogged(false)
+            this.props.goToLogin()
+        }
+        else{
+            this.props.setLogged(true)
+            this.props.fetchFeed(token)
+        }
     }
 
     listFeed = () => {
@@ -29,7 +41,7 @@ class Feed extends React.Component {
     render() {
         return (
             <div>
-                {this.props.feedList !== undefined ? this.listFeed() : <div>Carregando</div>}
+                {this.props.feedList !== undefined ? this.listFeed() : <div>Carregando...</div>}
             </div>
         )
     }
@@ -42,7 +54,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchFeed: (auth) => dispatch(fetchFeed(auth))
+    fetchFeed: (auth) => dispatch(fetchFeed(auth)),
+    goToLogin: () => dispatch(push(routes.login)),
+    setLogged: (logged)=> dispatch(setLogged(logged))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);
