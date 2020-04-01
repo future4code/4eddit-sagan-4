@@ -1,10 +1,9 @@
-import { act } from "react-dom/test-utils"
-
 const initialState = {
     posts: [],
+    postDetailed: {}
 }
 
-const tripDetail = (state = initialState, action) => {
+const detailPost = (state = initialState, action) => {
     switch (action.type) {
         case 'DETAIL_POST' : {
             return {
@@ -17,3 +16,5 @@ const tripDetail = (state = initialState, action) => {
             return state; 
     }
 }
+
+export default detailPost;
