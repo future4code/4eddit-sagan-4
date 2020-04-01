@@ -39,7 +39,6 @@ const Post = (props) => {
                 <p>Postado por {username} {date.toISOString()}</p>
             </HeaderPostItem>
             <div>
-                <h2>{title}</h2>
                 <p>{text}</p>
             </div>
             <FooterPost>
