@@ -64,7 +64,7 @@ class Feed extends React.Component {
                 <h2>Feed</h2>
                 {this.props.feedList.map(post => {
                     return (
-                        <Post key={post.id} post={post} />
+                        <Post key={post.id} post={post} auth={token}/>
                     )
                 })}
             </div>

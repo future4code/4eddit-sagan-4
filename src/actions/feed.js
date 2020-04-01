@@ -27,6 +27,7 @@ export const fetchFeed = (auth) => async (dispatch) => {
 export const votePost = (postId, direction, auth) => async (dispatch) => {
     try {
         const response = await axios.put(`${baseUrl}/${postId}/vote`, { "direction": parseInt(direction) }, { headers: { auth: auth } })
+        dispatch(fetchFeed(auth))
         alert("Você votou")
     }
     catch (error) {
