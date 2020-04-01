@@ -2,13 +2,15 @@ import React from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
 import LoginPage from "../LoginPage";
+import DetailPostPage from "../DetailPostPage";
 import Signup from "../Signup";
 import Feed from "../Feed";
 
 export const routes = {
   root: "/",
   signup: "/signup",
-  feed: "/feed"
+  feed: "/feed",
+  detailPost: "/detail-post"
   // Outras rotas aqui
 };
 
@@ -19,6 +21,7 @@ function Router(props) {
         <Route exact path={routes.root} component={LoginPage} />
         <Route exact path={routes.signup} component={Signup} />
         <Route exact path={routes.feed} component={Feed} />
+        <Route exact path={routes.detailPost} component={DetailPostPage} />
       </Switch>
     </ConnectedRouter>
   );

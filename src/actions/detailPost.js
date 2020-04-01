@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://us-central1-future-apis.cloudfunctions.net/fourEddit/'
+const baseUrl = 'https://us-central1-future-apis.cloudfunctions.net/fourEddit'
 
 const detailPost = (post) => {
     return {
@@ -11,20 +11,60 @@ const detailPost = (post) => {
     }
 }
 
-const getPostDetail = (id) => async (dispatch) => {
+
+export const getPostDetail = (id) => async (dispatch) => {
     const token = window.localStorage.getItem('token')
 
     try {
         const response = await axios.get(
             `${baseUrl}/posts/${id}`,
             { headers: {
-                'auth': token
+                auth: token
+            }}
+        )
+            
+        const post = response.data.post
+
+        dispatch(detailPost(post))
+    } catch (error) {
+        alert('Por favor, tente novamente')
+    }
+}
+
+export const createComment = (id, textComment) => async (dispatch) => {
+    const token = window.localStorage.getItem('token')
+    const comment = {text: textComment}
+
+    try {
+        const response = await axios.post(
+            `${baseUrl}/posts/${id}/comment`,
+            comment,
+            { headers : {
+                auth: token 
+            }}
+        )
+        dispatch(getPostDetail(id))
+
+    } catch (error) {
+        alert('Por favor, tente novamente.')
+    }
+}
+
+export const voteComment = (idPost, idComment, direction) => async (dispatch) => {
+    const token = window.localStorage.getItem('token')
+
+    try {
+        const response = await axios.put(
+            `${baseUrl}/posts/${idPost}/comment/${idComment}/vote`,
+            { direction },
+            { headers : {
+                auth: token
             }}
         )
 
-        dispatch(detailPost(post))
+        dispatch(getPostDetail(idPost))
 
     } catch (error) {
-        alert('Por favor, tente novamente')
+        alert('Por favor, tente novamente.')
     }
 }
