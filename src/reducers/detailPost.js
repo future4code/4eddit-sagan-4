@@ -5,7 +5,7 @@ const initialState = {
 
 const detailPost = (state = initialState, action) => {
     switch (action.type) {
-        case 'DETAIL_POST' : {
+        case 'SET_POST' : {
             return {
                 ...state,
                 postDetailed: action.payload.post

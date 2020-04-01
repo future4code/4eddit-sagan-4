@@ -31,12 +31,18 @@ class Menu extends React.Component {
         }
     }
 
+    logout = () => {
+        window.localStorage.removeItem('token')
+        this.props.goToLogin()
+        this.props.setLogged(false)
+    }
+
     showMenu = () => {
 
         if (this.props.logged) {
             return (
                 <div>
-                    <button>LOGOUT</button>
+                    <button onClick={() => this.logout() }> LOGOUT </button>
                 </div>
             )
         }

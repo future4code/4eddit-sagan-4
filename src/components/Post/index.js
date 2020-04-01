@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux"
 import { votePost } from "../../actions/feed"
+import detailPost from "../../reducers/detailPost";
+import { push } from "connected-react-router";
+import { setPost } from "../../actions/detailPost";
+import { routes } from "../../containers/Router";
 
 const PostWrapper = styled.div`
     border: 1px solid black;
@@ -29,6 +33,7 @@ const handleVoteDirection = (userVoteDirection) => {
     }
 }
 
+
 const Post = (props) => {
     const { userVoteDirection, id, votesCount, commentsCount, text, username, createdAt, title } = props.post
     const date = new Date(createdAt)
@@ -53,6 +58,7 @@ const Post = (props) => {
                     <button onClick={() => {
                         props.votePost(id, 1, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkR5RGtTWlRPaDhLS2V1TDZDR3hIIiwiZW1haWwiOiJhbmRyaXVzLnJvY2hhbGF6YXJpbm9AZ21haWwuY29tIiwidXNlcm5hbWUiOiJhbmRyaXVzcmwiLCJpYXQiOjE1ODU2NjI0Njl9.v9BopDmhppBAwdyTqE2An3lVsHruXdGTR7GaiZje5t8")
                     }}>Like</button>
+                    <button onClick={() => { props.setPost(props.post); props.redirectDetailPostPage() }}>Detalhar</button>
                 </FooterPostItem>
                 <FooterPostItem>
                     {commentsCount} Comentários
@@ -64,7 +70,9 @@ const Post = (props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    votePost: (postId, direction, auth) => dispatch(votePost(postId, direction, auth))
+    votePost: (postId, direction, auth) => dispatch(votePost(postId, direction, auth)),
+    setPost: (post) => dispatch(setPost(post)),
+    redirectDetailPostPage: () => dispatch(push(routes.detailPost))
 })
 
 export default connect(null, mapDispatchToProps)(Post);
