@@ -76,7 +76,8 @@ class Signup extends React.Component{
                         <div>Tipo de formulário não encontrado</div>
                     )
                     
-                })}
+                })
+                }
                 <button type="submit">Criar conta</button>
             </form>
         )

@@ -8,7 +8,7 @@ export const setFeed = (feed) => {
     return {
         type: "SET_FEED",
         payload: {
-            feed:feed
+            feed: feed
         }
     }
 }
@@ -16,7 +16,7 @@ export const setFeed = (feed) => {
 //ASYNC
 export const fetchFeed = (auth) => async (dispatch) => {
     try {
-        const response = await axios.get(baseUrl,{headers:{auth:auth}})
+        const response = await axios.get(baseUrl, { headers: { auth: auth } })
         dispatch(setFeed(response.data.posts))
     }
     catch (error) {
@@ -26,8 +26,24 @@ export const fetchFeed = (auth) => async (dispatch) => {
 
 export const votePost = (postId, direction, auth) => async (dispatch) => {
     try {
-        const response = await axios.put(`${baseUrl}/${postId}/vote`, {"direction": parseInt(direction)}, {headers:{auth:auth}})
+        const response = await axios.put(`${baseUrl}/${postId}/vote`, { "direction": parseInt(direction) }, { headers: { auth: auth } })
         alert("Você votou")
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
+export const createPost = (post, auth) => async (dispatch) => {
+    const { text, title } = post
+    const data = {
+        "text": text,
+        "title": title
+    }
+    try {
+        const response = await axios.post(baseUrl, data, {headers: {auth:auth}})
+        alert("Post criado!")
+        dispatch(fetchFeed(auth))
     }
     catch (error) {
         console.error(error)
