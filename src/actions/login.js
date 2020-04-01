@@ -20,7 +20,7 @@ export const login = (email, password) => async (dispatch) => {
         
         window.localStorage.setItem("token", token);
 
-        dispatch(push(routes.LoginPage))
+        dispatch(push(routes.feed))
 
     } catch (error) {
         alert('Por favor tentar novamente')
