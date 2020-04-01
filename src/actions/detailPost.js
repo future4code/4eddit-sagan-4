@@ -2,9 +2,10 @@ import axios from 'axios';
 
 const baseUrl = 'https://us-central1-future-apis.cloudfunctions.net/fourEddit'
 
-const detailPost = (post) => {
+
+export const setPost = (post) => {
     return {
-        type: 'DETAIL_POST', 
+        type: 'SET_POST',
         payload: {
             post
         }
@@ -25,7 +26,7 @@ export const getPostDetail = (id) => async (dispatch) => {
             
         const post = response.data.post
 
-        dispatch(detailPost(post))
+        dispatch(setPost(post))
     } catch (error) {
         alert('Por favor, tente novamente')
     }
