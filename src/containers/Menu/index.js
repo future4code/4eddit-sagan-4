@@ -15,9 +15,6 @@ const MenuWrapper = styled.div`
 class Menu extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            logged: false
-        }
     }
 
 
@@ -32,19 +29,6 @@ class Menu extends React.Component {
         else {
             this.props.setLogged(true)
         }
-    }
-
-    handdleLoggedUser = (logged) => {
-        if (logged) {
-            this.setState({
-                logged: true
-            })
-        }
-        // else{
-        //     this.setState({
-        //         logged: false
-        //     })
-        // }
     }
 
     showMenu = () => {
