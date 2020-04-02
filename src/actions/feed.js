@@ -24,14 +24,26 @@ export const fetchFeed = (auth) => async (dispatch) => {
     }
 }
 
-export const votePost = (postId, direction, auth) => async (dispatch) => {
-    try {
-        const response = await axios.put(`${baseUrl}/${postId}/vote`, { "direction": parseInt(direction) }, { headers: { auth: auth } })
-        dispatch(fetchFeed(auth))
-        alert("Você votou")
-    }
-    catch (error) {
-        console.error(error)
+export const votePost = (postId, direction, auth, userVoteDirection) => async (dispatch) => {
+    console.log("direcao clicada"+ direction)
+    console.log("direcao atual"+ userVoteDirection)
+    if ((direction===userVoteDirection)){
+        try {
+            const response = await axios.put(`${baseUrl}/${postId}/vote`, { "direction": 0 }, { headers: { auth: auth } })
+            dispatch(fetchFeed(auth))
+        }
+        catch (error) {
+            console.error(error)
+        }
+        
+    }else{
+        try {
+            const response = await axios.put(`${baseUrl}/${postId}/vote`, { "direction": parseInt(direction) }, { headers: { auth: auth } })
+            dispatch(fetchFeed(auth))
+        }
+        catch (error) {
+            console.error(error)
+        }
     }
 }
 
