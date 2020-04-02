@@ -6,6 +6,8 @@ import detailPost from "../../reducers/detailPost";
 import { push } from "connected-react-router";
 import { setPost } from "../../actions/detailPost";
 import { routes } from "../../containers/Router";
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowdownwardIcon from '@material-ui/icons/ArrowDownward';
 
 const PostWrapper = styled.div`
     border: 1px solid black;
@@ -33,6 +35,41 @@ const handleVoteDirection = (userVoteDirection) => {
     }
 }
 
+const HandleArrowUp = (userVoteDirection)=> {
+    if (userVoteDirection===-1){
+        return "secondary"
+    }else{
+        return "primary"
+    }
+    
+}
+const HandleArrowDown = (userVoteDirection)=> {
+    if (userVoteDirection===1){
+        return "secondary"
+    }else{
+        return "primary"
+    }
+    
+}
+
+const voteMenu = (props) => {
+    const { userVoteDirection, id, votesCount, commentsCount, text, username, createdAt, title } = props.post
+    return (
+        <FooterPostItem>
+            <ArrowdownwardIcon color={HandleArrowUp(userVoteDirection)} onClick={() => {
+                props.votePost(id, -1, props.auth, userVoteDirection)
+            }}/>
+
+            {votesCount}
+
+            <ArrowUpwardIcon color={HandleArrowDown(userVoteDirection)} onClick={() => {
+                props.votePost(id, 1, props.auth, userVoteDirection)
+            }}/>
+            <button onClick={() => { props.setPost(props.post); props.redirectDetailPostPage() }}>Detalhar</button>
+        </FooterPostItem>
+    )
+}
+
 
 const Post = (props) => {
     const { userVoteDirection, id, votesCount, commentsCount, text, username, createdAt, title } = props.post
@@ -47,10 +84,9 @@ const Post = (props) => {
                 <p>{text}</p>
             </div>
             <FooterPost>
-                <FooterPostItem>
+                {voteMenu(props)}
+                {/* <FooterPostItem>
                     {handleVoteDirection(userVoteDirection)}
-
-                    {/* ALTERAR AUTH PARA O DO LOGIN */}
                     <button onClick={() => {
                         props.votePost(id, -1, props.auth)
                     }}>Deslike</button>
@@ -58,8 +94,9 @@ const Post = (props) => {
                     <button onClick={() => {
                         props.votePost(id, 1, props.auth)
                     }}>Like</button>
+                    <ArrowUpwardIcon color="primary"/>
                     <button onClick={() => { props.setPost(props.post); props.redirectDetailPostPage() }}>Detalhar</button>
-                </FooterPostItem>
+                </FooterPostItem> */}
                 <FooterPostItem>
                     {commentsCount} Comentários
                 </FooterPostItem>
@@ -70,7 +107,7 @@ const Post = (props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    votePost: (postId, direction, auth) => dispatch(votePost(postId, direction, auth)),
+    votePost: (postId, direction, auth, userVoteDirection) => dispatch(votePost(postId, direction, auth, userVoteDirection)),
     setPost: (post) => dispatch(setPost(post)),
     redirectDetailPostPage: () => dispatch(push(routes.detailPost))
 })

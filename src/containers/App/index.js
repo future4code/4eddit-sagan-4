@@ -14,7 +14,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 const PageContent = styled(Card)`
-  width: 80%;
+  width: 800px;
   margin-left: auto;
   margin-right: auto;
 `
