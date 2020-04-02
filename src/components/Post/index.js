@@ -52,11 +52,11 @@ const Post = (props) => {
 
                     {/* ALTERAR AUTH PARA O DO LOGIN */}
                     <button onClick={() => {
-                        props.votePost(id, -1, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkR5RGtTWlRPaDhLS2V1TDZDR3hIIiwiZW1haWwiOiJhbmRyaXVzLnJvY2hhbGF6YXJpbm9AZ21haWwuY29tIiwidXNlcm5hbWUiOiJhbmRyaXVzcmwiLCJpYXQiOjE1ODU2NjI0Njl9.v9BopDmhppBAwdyTqE2An3lVsHruXdGTR7GaiZje5t8")
+                        props.votePost(id, -1, props.auth)
                     }}>Deslike</button>
                     {votesCount}
                     <button onClick={() => {
-                        props.votePost(id, 1, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkR5RGtTWlRPaDhLS2V1TDZDR3hIIiwiZW1haWwiOiJhbmRyaXVzLnJvY2hhbGF6YXJpbm9AZ21haWwuY29tIiwidXNlcm5hbWUiOiJhbmRyaXVzcmwiLCJpYXQiOjE1ODU2NjI0Njl9.v9BopDmhppBAwdyTqE2An3lVsHruXdGTR7GaiZje5t8")
+                        props.votePost(id, 1, props.auth)
                     }}>Like</button>
                     <button onClick={() => { props.setPost(props.post); props.redirectDetailPostPage() }}>Detalhar</button>
                 </FooterPostItem>
