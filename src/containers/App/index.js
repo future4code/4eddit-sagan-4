@@ -9,6 +9,34 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { generateReducers } from "../../reducers";
 import { routerMiddleware } from "connected-react-router";
 import Menu from "../Menu";
+import styled from "styled-components";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+
+const PageContent = styled(Card)`
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+`
+
+//ALTERAR DEPOIS PRO STYLE GLOBAL
+const classes = {
+  card: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 export const history = createBrowserHistory();
 
@@ -26,7 +54,11 @@ export const App = () => (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Menu />
-      <Router history={history} />
+      <PageContent className={classes.card}>
+        <CardContent>
+          <Router history={history} />
+        </CardContent>
+      </PageContent>
     </MuiThemeProvider>
   </Provider>
 );
