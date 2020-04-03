@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { connect } from "react-redux"
 import { push } from 'connected-react-router';
 import { routes } from '../Router';
-import { fetchFeed, createPost } from "../../actions/feed"
+import { fetchFeed, createPost } from "../../actions/posts"
 import { setLogged } from "../../actions/menu"
 import Post from "../../components/Post"
 import { ButtonCustom } from '../../style/style';
@@ -134,7 +134,7 @@ class Feed extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        feedList: state.feed.feed
+        feedList: state.posts.feed
     }
 }
 
