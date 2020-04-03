@@ -15,13 +15,14 @@ export const login = (email, password) => async (dispatch) => {
         const response = await axios.post(
             `${baseUrl}/login`, loginData
         );
-        
+
         const token = response.data.token;
+        const username = response.data.user.username
         
         window.localStorage.setItem("token", token);
+        window.localStorage.setItem("user", username)
 
         dispatch(push(routes.feed))
-
     } catch (error) {
         alert('Por favor tentar novamente')
     }

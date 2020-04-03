@@ -26,7 +26,7 @@ const postForm = [
     }
 ]
 
-const token = window.localStorage.getItem("token")
+let token = window.localStorage.getItem("token")
 
 class Feed extends React.Component {
     constructor(props) {
@@ -37,7 +37,8 @@ class Feed extends React.Component {
     }
 
     componentDidMount() {
-        console.log(token)
+        token = window.localStorage.getItem("token")
+
         if (token === null) {
             this.props.setLogged(false)
             this.props.goToLogin()
