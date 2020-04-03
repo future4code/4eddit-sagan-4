@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPostDetail, createComment, voteComment } from  '../../actions/detailPost'
+import { getPostDetail, createComment, voteComment } from  '../../actions/posts'
 import { push } from 'connected-react-router';
 import { routes } from '../Router';
 import styled from 'styled-components'
@@ -9,6 +9,7 @@ import { withStyles, TextField, TextareaAutosize, Button } from '@material-ui/co
 import { ArrowUpward, ArrowDownward } from '@material-ui/icons'
 import { red } from '@material-ui/core/colors';
 import {ButtonCustom} from '../../style/style';
+
 
 const styles = theme => ({
     root: {
@@ -148,7 +149,7 @@ class DetailPost extends Component {
 }
 
 const mapStateToProps = state => ({
-    post: state.detailPost.postDetailed
+    post: state.posts.postDetailed
 })
 
 const mapDispatchToProps = (dispatch) => ({
