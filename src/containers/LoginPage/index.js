@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { login } from "../../actions/login";
+import { login } from "../../actions/loginSignup";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { TextField } from "@material-ui/core";
