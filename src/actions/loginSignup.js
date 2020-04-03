@@ -27,3 +27,20 @@ export const login = (email, password) => async (dispatch) => {
         alert('Por favor tentar novamente')
     }
 }
+
+export const signup = (formData) => async (dispatch) => {
+    const { email, password, username} = formData
+    const data = {
+        "email": email,
+        "password": password,
+        "username": username
+    }
+    try {
+        const response = await axios.post(`${baseUrl}/signup`, data)
+        alert("Usuário criado com sucesso")
+        dispatch(login(email, password))
+    }
+    catch (error) {
+        console.error(error)
+    }
+}

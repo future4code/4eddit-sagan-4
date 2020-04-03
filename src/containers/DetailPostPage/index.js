@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import { withStyles, TextField, TextareaAutosize, Button } from '@material-ui/core';
 import { ArrowUpward, ArrowDownward } from '@material-ui/icons'
 import { red } from '@material-ui/core/colors';
+import {ButtonCustom} from '../../style/style';
 
 const styles = theme => ({
     root: {
@@ -23,11 +24,6 @@ const BoxButton = styled.div`
     justify-content: flex-end;
     padding-bottom: 10px;
     padding-top: 10px;
-`
-const ButtonCustom = styled(Button)`
-    background-color: #0d47a1;
-    color: white;
-    font-weight: bold;
 `
 const TextareaAutosizeCustom = styled(TextareaAutosize)`
     overflow: hidden;
@@ -60,7 +56,7 @@ const DivComment = styled.div`
 `
 const SpanUserLogged = styled.span`
     color: #2196f3;
-    text-decoration: underline
+    text-decoration: underline;
 `
 
 class DetailPost extends Component {

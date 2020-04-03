@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { login } from "../../actions/login";
+import { login } from "../../actions/loginSignup";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { TextField } from "@material-ui/core";
 import Signup from '../Signup/index';
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
+import {ButtonCustom} from '../../style/style';
 
 const LoginWrapper = styled.div`
   width: 100%;
@@ -52,7 +53,7 @@ class LoginPage extends Component {
           label="Password"
           value={this.state.password}
         />
-        <button onClick={() => this.signIn()}> LOGIN </button>
+        <ButtonCustom onClick={() => this.signIn()}> LOGIN </ButtonCustom>
       </LoginWrapper>
     );
   }

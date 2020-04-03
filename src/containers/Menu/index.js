@@ -3,7 +3,7 @@ import styled from "styled-components";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import {ButtonCustom} from '../../style/style';
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { routes } from "../Router";
@@ -40,11 +40,6 @@ const Logo = styled.a`
         text-decoration: none;
         color:inherit;
     }
-`
-
-const ButtonCustom = styled(Button)`
-    color: white;
-    font-weight: bold;
 `
 
 

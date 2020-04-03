@@ -6,6 +6,11 @@ import { routes } from '../Router';
 import { fetchFeed, createPost } from "../../actions/feed"
 import { setLogged } from "../../actions/menu"
 import Post from "../../components/Post"
+import { ButtonCustom } from '../../style/style';
+import { TextField } from "@material-ui/core";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { classes } from '../../style/theme';
 
 const postForm = [
     {
@@ -25,6 +30,19 @@ const postForm = [
         title: "Texto do post",
     }
 ]
+
+const NewPostWrapper = styled(Card)`
+    width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+`
+
+const FormCustom = styled.form`
+    gap: 10px;
+  place-content: center;
+  justify-items: center;
+  display: grid;
+`
 
 let token = window.localStorage.getItem("token")
 
@@ -65,7 +83,7 @@ class Feed extends React.Component {
                 <h2>Feed</h2>
                 {this.props.feedList.map(post => {
                     return (
-                        <Post key={post.id} post={post} auth={token}/>
+                        <Post key={post.id} post={post} auth={token} />
                     )
                 })}
             </div>
@@ -75,40 +93,41 @@ class Feed extends React.Component {
     render() {
         return (
             <div>
-                <h2>Post</h2>
-                <form onSubmit={(event)=>{
-                    event.preventDefault()
-                    this.props.createPost(this.state.form, token)
-                    }}>
+                <NewPostWrapper className={classes.card}>
+                    <CardContent>
+                        <FormCustom onSubmit={(event) => {
+                            event.preventDefault()
+                            this.props.createPost(this.state.form, token)
+                        }}>
+                            {postForm.map((form) => {
+                                if (form.type === "text") {
+                                    return (
+                                        <div key={form.name}>
+                                            <TextField
+                                                id={form.name}
+                                                name={form.name}
+                                                label={form.label}
+                                                type={form.type}
+                                                value={this.state.form[form.name] || ""}
+                                                required={form.required}
+                                                onChange={this.handleFormChange}
+                                            />
+                                        </div>
+                                    )
+                                }
+                                return (
+                                    <div>Tipo de formulário não encontrado</div>
+                                )
 
-                    {/* EXTRAIR MAP PARA UMA FUNÇÃO */}
-
-                    {postForm.map((form) => {
-                        if (form.type === "text") {
-                            return (
-                                <div key={form.name}>
-                                    <label htmlFor={form.name}>{form.label}: </label>
-                                    <input
-                                        id={form.name}
-                                        name={form.name}
-                                        type={form.type}
-                                        value={this.state.form[form.name] || ""}
-                                        required={form.required}
-                                        onChange={this.handleFormChange}
-                                    />
-                                </div>
-                            )
-                        }
-                        return (
-                            <div>Tipo de formulário não encontrado</div>
-                        )
-
-                    })
-                    }
-                    <button type="submit">Criar post</button>
-                </form>
+                            })
+                            }
+                            <ButtonCustom type="submit">Criar post</ButtonCustom>
+                        </FormCustom>
+                    </CardContent>
+                </NewPostWrapper>
                 {this.props.feedList !== undefined ? this.listFeed() : <div>Carregando...</div>}
             </div>
+
         )
     }
 }

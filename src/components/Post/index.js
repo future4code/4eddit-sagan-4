@@ -8,6 +8,7 @@ import { setPost } from "../../actions/detailPost";
 import { routes } from "../../containers/Router";
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowdownwardIcon from '@material-ui/icons/ArrowDownward';
+import {ButtonCustom} from '../../style/style';
 
 const PostWrapper = styled.div`
     border: 1px solid black;
@@ -65,7 +66,7 @@ const voteMenu = (props) => {
             <ArrowUpwardIcon color={HandleArrowDown(userVoteDirection)} onClick={() => {
                 props.votePost(id, 1, props.auth, userVoteDirection)
             }}/>
-            <button onClick={() => { props.setPost(props.post); props.redirectDetailPostPage() }}>Detalhar</button>
+            <ButtonCustom onClick={() => { props.setPost(props.post); props.redirectDetailPostPage() }}>Detalhar</ButtonCustom>
         </FooterPostItem>
     )
 }
