@@ -1,6 +1,9 @@
 import React from "react"
 import { connect } from "react-redux"
-import {signup} from "../../actions/signup"
+import { signup } from "../../actions/loginSignup"
+import { TextField } from "@material-ui/core";
+import styled from "styled-components"
+import { ButtonCustom } from '../../style/style';
 
 const signupForm = [
     {
@@ -29,15 +32,24 @@ const signupForm = [
     }
 ]
 
-class Signup extends React.Component{
-    constructor(props){
+const SignupWrapper = styled.form`
+    width: 100%;
+  height: 100vh;
+  gap: 10px;
+  place-content: center;
+  justify-items: center;
+  display: grid;
+`
+
+class Signup extends React.Component {
+    constructor(props) {
         super(props)
         this.state = {
             form: {}
         }
     }
 
-    handleFormChange = (e)=>{
+    handleFormChange = (e) => {
         const { name, value } = e.target
         this.setState({
             form: {
@@ -47,27 +59,27 @@ class Signup extends React.Component{
         })
     }
 
-    handleOnSubmit = (e)=>{
+    handleOnSubmit = (e) => {
         e.preventDefault()
         this.props.signup(this.state.form)
     }
 
-    render(){
+    render() {
 
-        return(
-            <form onSubmit={this.handleOnSubmit}>
-                {signupForm.map((form)=>{
-                    if (form.type==="text" ||form.type==="password"){
+        return (
+            <SignupWrapper onSubmit={this.handleOnSubmit}>
+                {signupForm.map((form) => {
+                    if (form.type === "text" || form.type === "password") {
                         return (
                             <div key={form.name}>
-                                <label htmlFor={form.name}>{form.label}: </label>
-                                <input
+                                <TextField
+                                    onChange={this.handleFormChange}
                                     id={form.name}
                                     name={form.name}
                                     type={form.type}
-                                    value={this.state.form[form.name] || ""}
                                     required={form.required}
-                                    onChange={this.handleFormChange}
+                                    label={form.label}
+                                    value={this.state.form[form.name] || ""}
                                 />
                             </div>
                         )
@@ -75,11 +87,11 @@ class Signup extends React.Component{
                     return (
                         <div>Tipo de formulário não encontrado</div>
                     )
-                    
+
                 })
                 }
-                <button type="submit">Criar conta</button>
-            </form>
+                <ButtonCustom type="submit">Criar conta</ButtonCustom>
+            </SignupWrapper>
         )
     }
 }
@@ -88,4 +100,4 @@ const mapDispatchToProps = dispatch => ({
     signup: (formData) => dispatch(signup(formData))
 })
 
-export default connect(null, mapDispatchToProps) (Signup);
+export default connect(null, mapDispatchToProps)(Signup);

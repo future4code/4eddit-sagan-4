@@ -12,30 +12,20 @@ import Menu from "../Menu";
 import styled from "styled-components";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import AppBar from '@material-ui/core/AppBar';
+import {classes} from '../../style/theme';
 
 const PageContent = styled(Card)`
   width: 800px;
   margin-left: auto;
   margin-right: auto;
 `
+const Footer = styled(AppBar)`
+  display: flex;
+  align-items: center;
+  padding: 19px;
+`
 
-//ALTERAR DEPOIS PRO STYLE GLOBAL
-const classes = {
-  card: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-};
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 export const history = createBrowserHistory();
@@ -59,6 +49,9 @@ export const App = () => (
           <Router history={history} />
         </CardContent>
       </PageContent>
+      <Footer position="static" color="primary">
+        <strong>Andrius - Nauara @4eddit</strong>
+      </Footer>
     </MuiThemeProvider>
   </Provider>
 );
