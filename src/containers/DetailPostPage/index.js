@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPostDetail, createComment, voteComment } from  '../../actions/detailPost'
+import { getPostDetail, createComment, voteComment } from  '../../actions/posts'
 import { push } from 'connected-react-router';
 import { routes } from '../Router';
 import styled from 'styled-components'
@@ -9,6 +9,7 @@ import { withStyles, TextField, TextareaAutosize, Button } from '@material-ui/co
 import { ArrowUpward, ArrowDownward } from '@material-ui/icons'
 import { red } from '@material-ui/core/colors';
 import {ButtonCustom} from '../../style/style';
+
 
 const styles = theme => ({
     root: {
@@ -25,7 +26,6 @@ const BoxButton = styled.div`
     padding-bottom: 10px;
     padding-top: 10px;
 `
-
 const TextareaAutosizeCustom = styled(TextareaAutosize)`
     overflow: hidden;
     width: 100%;
@@ -39,7 +39,6 @@ const CommentMade = styled.div`
     border: 1px solid black;
     margin-bottom: 15px;
 `
-
 const HeaderAndFooterBox = styled.div`
     background-color: #0d47a1;
     color: white;
@@ -49,18 +48,16 @@ const HeaderAndFooterBox = styled.div`
     flex-direction: row;
     align-items: center;
 `
-
 const DivVote = styled(HeaderAndFooterBox)`
 
 `
-
 const DivComment = styled.div`
     min-height: 80px;
     border: 1px solid black;
 `
-
 const SpanUserLogged = styled.span`
-    color: blue;
+    color: #2196f3;
+    text-decoration: underline;
 `
 
 class DetailPost extends Component {
@@ -152,7 +149,7 @@ class DetailPost extends Component {
 }
 
 const mapStateToProps = state => ({
-    post: state.detailPost.postDetailed
+    post: state.posts.postDetailed
 })
 
 const mapDispatchToProps = (dispatch) => ({

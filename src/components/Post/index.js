@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux"
-import { votePost } from "../../actions/feed"
-import detailPost from "../../reducers/detailPost";
+import { votePost } from "../../actions/posts"
 import { push } from "connected-react-router";
-import { setPost } from "../../actions/detailPost";
+import { setPost } from "../../actions/posts";
 import { routes } from "../../containers/Router";
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowdownwardIcon from '@material-ui/icons/ArrowDownward';
