@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { signup } from "../../actions/loginSignup"
 import { TextField } from "@material-ui/core";
 import styled from "styled-components"
+import { ButtonCustom } from '../../style/style';
 
 const signupForm = [
     {
@@ -31,10 +32,13 @@ const signupForm = [
     }
 ]
 
-const SignupWrapper =  styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+const SignupWrapper = styled.form`
+    width: 100%;
+  height: 100vh;
+  gap: 10px;
+  place-content: center;
+  justify-items: center;
+  display: grid;
 `
 
 class Signup extends React.Component {
@@ -86,7 +90,7 @@ class Signup extends React.Component {
 
                 })
                 }
-                <button type="submit">Criar conta</button>
+                <ButtonCustom type="submit">Criar conta</ButtonCustom>
             </SignupWrapper>
         )
     }
