@@ -1,6 +1,20 @@
 import React, { Component } from "react";
 import { login } from "../../actions/login";
 import { connect } from "react-redux";
+import styled from "styled-components";
+import { TextField } from "@material-ui/core";
+import Signup from '../Signup/index';
+import { push } from "connected-react-router";
+import { routes } from "../../containers/Router";
+
+const LoginWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  gap: 10px;
+  place-content: center;
+  justify-items: center;
+  display: grid;
+`;
 
 class LoginPage extends Component {
   constructor(props) {
@@ -23,14 +37,15 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
-        <input onChange={this.handleFieldChange} 
+      <LoginWrapper>
+        <TextField 
+          onChange={this.handleFieldChange} 
           name="email"
           type="email"
           label="E-mail"
           value={this.state.email}
         />
-        <input
+        <TextField
           onChange={this.handleFieldChange}
           name="password"
           type="password"
@@ -38,13 +53,13 @@ class LoginPage extends Component {
           value={this.state.password}
         />
         <button onClick={() => this.signIn()}> LOGIN </button>
-      </div>
+      </LoginWrapper>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: (email, password) => dispatch(login(email, password))
+  login: (email, password) => dispatch(login(email, password)),
 })
 
 export default connect (null, mapDispatchToProps)(LoginPage);
