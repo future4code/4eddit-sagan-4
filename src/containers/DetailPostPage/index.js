@@ -24,13 +24,11 @@ const BoxButton = styled.div`
     padding-bottom: 10px;
     padding-top: 10px;
 `
-
 const ButtonCustom = styled(Button)`
     background-color: #0d47a1;
     color: white;
     font-weight: bold;
 `
-
 const TextareaAutosizeCustom = styled(TextareaAutosize)`
     overflow: hidden;
     width: 100%;
@@ -44,7 +42,6 @@ const CommentMade = styled.div`
     border: 1px solid black;
     margin-bottom: 15px;
 `
-
 const HeaderAndFooterBox = styled.div`
     background-color: #0d47a1;
     color: white;
@@ -54,18 +51,16 @@ const HeaderAndFooterBox = styled.div`
     flex-direction: row;
     align-items: center;
 `
-
 const DivVote = styled(HeaderAndFooterBox)`
 
 `
-
 const DivComment = styled.div`
     min-height: 80px;
     border: 1px solid black;
 `
-
 const SpanUserLogged = styled.span`
-    color: blue;
+    color: #2196f3;
+    text-decoration: underline
 `
 
 class DetailPost extends Component {
