@@ -5,20 +5,12 @@ import { getPostDetail, createComment, voteComment } from '../../actions/posts'
 import { push } from 'connected-react-router';
 import { routes } from '../Router';
 import styled from 'styled-components'
-import { withStyles, TextField, TextareaAutosize, Button } from '@material-ui/core';
+import { TextareaAutosize} from '@material-ui/core';
 import { ArrowUpward, ArrowDownward } from '@material-ui/icons'
-import { red } from '@material-ui/core/colors';
 import { ButtonCustom } from '../../style/style';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import { classes } from '../../style/theme';
 
-const styles = theme => ({
-    root: {
-        paddingTop: 1,
-        paddingBottom: 1,
-    },
-});
 const BoxComment = styled.div`
 `
 const BoxButton = styled.div`

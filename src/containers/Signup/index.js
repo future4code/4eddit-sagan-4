@@ -77,6 +77,7 @@ class Signup extends React.Component {
                                     name={form.name}
                                     type={form.type}
                                     required={form.required}
+                                    pattern={form.pattern}
                                     label={form.label}
                                     value={this.state.form[form.name] || ""}
                                 />

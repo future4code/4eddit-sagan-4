@@ -9,7 +9,6 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowdownwardIcon from '@material-ui/icons/ArrowDownward';
 import { ButtonCustom } from '../../style/style';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import { classes } from '../../style/theme';
 
 const PostWrapper = styled(Card)`
@@ -32,18 +31,6 @@ const FooterPostItem = styled.div`
 `
 const HeaderPostItem = FooterPostItem
 
-const handleVoteDirection = (userVoteDirection) => {
-    if (userVoteDirection === 0) {
-        return (<p>Não votou</p>)
-    }
-    else if (userVoteDirection === -1) {
-        return (<p>Votou negativo</p>)
-    }
-    else if (userVoteDirection === 1) {
-        return (<p>Votou positivo</p>)
-    }
-}
-
 const HandleArrowUp = (userVoteDirection) => {
     if (userVoteDirection === -1) {
         return "action"
@@ -62,7 +49,7 @@ const HandleArrowDown = (userVoteDirection) => {
 }
 
 const voteMenu = (props) => {
-    const { userVoteDirection, id, votesCount, commentsCount, text, username, createdAt, title } = props.post
+    const { userVoteDirection, id, votesCount } = props.post
     return (
         <FooterPostItem>
             <ArrowdownwardIcon color={HandleArrowUp(userVoteDirection)} onClick={() => {
@@ -81,8 +68,7 @@ const voteMenu = (props) => {
 
 
 const Post = (props) => {
-    const { userVoteDirection, id, votesCount, commentsCount, text, username, createdAt, title } = props.post
-    const date = new Date(createdAt)
+    const { commentsCount, text, username, title } = props.post
     return (
         <PostWrapper className={classes.card}>
             <HeaderPostItem>
