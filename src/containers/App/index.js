@@ -25,9 +25,6 @@ const Footer = styled(AppBar)`
   align-items: center;
   padding: 19px;
 `
-
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
 export const history = createBrowserHistory();
 
 const middlewares = [

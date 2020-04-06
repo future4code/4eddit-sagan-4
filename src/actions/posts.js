@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://us-central1-future-apis.cloudfunctions.net/fourEddit';
 const baseUrlPosts = "https://us-central1-future-apis.cloudfunctions.net/fourEddit/posts" 
-
 
 export const setPost = (post) => {
     return {
@@ -21,7 +19,6 @@ export const setFeed = (feed) => {
         }
     }
 }
-
 
 export const getPostDetail = (id) => async (dispatch) => {
     const token = window.localStorage.getItem('token')
@@ -47,7 +44,7 @@ export const createComment = (id, textComment) => async (dispatch) => {
     const comment = {text: textComment}
 
     try {
-        const response = await axios.post(
+        await axios.post(
             `${baseUrlPosts}/${id}/comment`,
             comment,
             { headers : {
@@ -65,7 +62,7 @@ export const voteComment = (idPost, idComment, direction) => async (dispatch) =>
     const token = window.localStorage.getItem('token')
 
     try {
-        const response = await axios.put(
+        await axios.put(
             `${baseUrlPosts}/${idPost}/comment/${idComment}/vote`,
             { direction },
             { headers : {
@@ -95,7 +92,7 @@ export const votePost = (postId, direction, auth, userVoteDirection) => async (d
     console.log("direcao atual"+ userVoteDirection)
     if ((direction===userVoteDirection)){
         try {
-            const response = await axios.put(`${baseUrlPosts}/${postId}/vote`, { "direction": 0 }, { headers: { auth: auth } })
+            await axios.put(`${baseUrlPosts}/${postId}/vote`, { "direction": 0 }, { headers: { auth: auth } })
             dispatch(fetchFeed(auth))
         }
         catch (error) {
@@ -104,7 +101,7 @@ export const votePost = (postId, direction, auth, userVoteDirection) => async (d
         
     }else{
         try {
-            const response = await axios.put(`${baseUrlPosts}/${postId}/vote`, { "direction": parseInt(direction) }, { headers: { auth: auth } })
+            await axios.put(`${baseUrlPosts}/${postId}/vote`, { "direction": parseInt(direction) }, { headers: { auth: auth } })
             dispatch(fetchFeed(auth))
         }
         catch (error) {
@@ -121,7 +118,7 @@ export const createPost = (post, auth) => async (dispatch) => {
         "title": title
     }
     try {
-        const response = await axios.post(baseUrlPosts, data, {headers: {auth:auth}})
+        await axios.post(baseUrlPosts, data, {headers: {auth:auth}})
         alert("Post criado!")
         dispatch(fetchFeed(auth))
     }

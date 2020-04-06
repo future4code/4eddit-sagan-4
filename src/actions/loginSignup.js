@@ -36,7 +36,7 @@ export const signup = (formData) => async (dispatch) => {
         "username": username
     }
     try {
-        const response = await axios.post(`${baseUrl}/signup`, data)
+        await axios.post(`${baseUrl}/signup`, data)
         alert("Usuário criado com sucesso")
         dispatch(login(email, password))
     }

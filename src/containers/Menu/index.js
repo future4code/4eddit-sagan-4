@@ -47,7 +47,6 @@ class Menu extends React.Component {
     constructor(props) {
         super(props)
     }
-
     componentDidMount() {
         const token = window.localStorage.getItem("token")
         if (token === null) {

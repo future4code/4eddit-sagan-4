@@ -18,7 +18,6 @@ const postForm = [
         label: "Titulo do post",
         type: "text",
         required: true,
-        //ADICIONAR PATTERN
         title: "Titulo do post",
     },
     {
@@ -26,7 +25,6 @@ const postForm = [
         label: "Texto do post",
         type: "text",
         required: true,
-        //ADICIONAR PATTERN
         title: "Texto do post",
     }
 ]
