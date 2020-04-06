@@ -7,19 +7,28 @@ import { setPost } from "../../actions/posts";
 import { routes } from "../../containers/Router";
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowdownwardIcon from '@material-ui/icons/ArrowDownward';
-import {ButtonCustom} from '../../style/style';
+import { ButtonCustom } from '../../style/style';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { classes } from '../../style/theme';
 
-const PostWrapper = styled.div`
-    border: 1px solid black;
-    margin: 3px;
+const PostWrapper = styled(Card)`
+    margin: 9px;
 `
 const FooterPost = styled.div`
     display: flex;
     justify-content: space-between;
+    background-color: #0d47a1;
 `
 const FooterPostItem = styled.div`
+    background-color: #0d47a1;
+    color: white;
+    height: 40px;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    padding-left: 9px;
+    padding-right: 9px;
 `
 const HeaderPostItem = FooterPostItem
 
@@ -35,21 +44,21 @@ const handleVoteDirection = (userVoteDirection) => {
     }
 }
 
-const HandleArrowUp = (userVoteDirection)=> {
-    if (userVoteDirection===-1){
-        return "secondary"
-    }else{
-        return "primary"
+const HandleArrowUp = (userVoteDirection) => {
+    if (userVoteDirection === -1) {
+        return "action"
+    } else {
+        return "inherit"
     }
-    
+
 }
-const HandleArrowDown = (userVoteDirection)=> {
-    if (userVoteDirection===1){
-        return "secondary"
-    }else{
-        return "primary"
+const HandleArrowDown = (userVoteDirection) => {
+    if (userVoteDirection === 1) {
+        return "action"
+    } else {
+        return "inherit"
     }
-    
+
 }
 
 const voteMenu = (props) => {
@@ -58,13 +67,13 @@ const voteMenu = (props) => {
         <FooterPostItem>
             <ArrowdownwardIcon color={HandleArrowUp(userVoteDirection)} onClick={() => {
                 props.votePost(id, -1, props.auth, userVoteDirection)
-            }}/>
+            }} />
 
             {votesCount}
 
             <ArrowUpwardIcon color={HandleArrowDown(userVoteDirection)} onClick={() => {
                 props.votePost(id, 1, props.auth, userVoteDirection)
-            }}/>
+            }} />
             <ButtonCustom onClick={() => { props.setPost(props.post); props.redirectDetailPostPage() }}>Detalhar</ButtonCustom>
         </FooterPostItem>
     )
@@ -75,28 +84,16 @@ const Post = (props) => {
     const { userVoteDirection, id, votesCount, commentsCount, text, username, createdAt, title } = props.post
     const date = new Date(createdAt)
     return (
-        <PostWrapper>
+        <PostWrapper className={classes.card}>
             <HeaderPostItem>
                 <h2>{title}</h2>
-                <p>Postado por {username} {date.toISOString()}</p>
+                <p>Postado por {username}</p>
             </HeaderPostItem>
             <div>
                 <p>{text}</p>
             </div>
             <FooterPost>
                 {voteMenu(props)}
-                {/* <FooterPostItem>
-                    {handleVoteDirection(userVoteDirection)}
-                    <button onClick={() => {
-                        props.votePost(id, -1, props.auth)
-                    }}>Deslike</button>
-                    {votesCount}
-                    <button onClick={() => {
-                        props.votePost(id, 1, props.auth)
-                    }}>Like</button>
-                    <ArrowUpwardIcon color="primary"/>
-                    <button onClick={() => { props.setPost(props.post); props.redirectDetailPostPage() }}>Detalhar</button>
-                </FooterPostItem> */}
                 <FooterPostItem>
                     {commentsCount} Comentários
                 </FooterPostItem>

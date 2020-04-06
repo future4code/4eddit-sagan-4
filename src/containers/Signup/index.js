@@ -11,7 +11,7 @@ const signupForm = [
         label: "Email",
         type: "text",
         required: true,
-        //ADICIONAR PATTERN
+        pattern: "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/",
         title: "Email do usuário",
     },
     {
@@ -19,7 +19,7 @@ const signupForm = [
         label: "Usuário",
         type: "text",
         required: true,
-        //ADICIONAR PATTERN
+        pattern: "/^@[A-Za-z0-9]+([._][A-Za-z0-9]+)*$/",
         title: "Nome do usuário",
     },
     {
@@ -27,7 +27,6 @@ const signupForm = [
         label: "Senha",
         type: "password",
         required: true,
-        //ADICIONAR PATTERN
         title: "Senha do usuário",
     }
 ]

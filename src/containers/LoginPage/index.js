@@ -8,7 +8,7 @@ import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
 import {ButtonCustom} from '../../style/style';
 
-const LoginWrapper = styled.div`
+const LoginWrapper = styled.form`
   width: 100%;
   height: 100vh;
   gap: 10px;
@@ -32,18 +32,20 @@ class LoginPage extends Component {
     });
   }
 
-  signIn = () => {
+  signIn = (e) => {
+    e.preventDefault()
     this.props.login(this.state.email, this.state.password)
   }
 
   render() {
     return (
-      <LoginWrapper>
+      <LoginWrapper onSubmit={this.signIn}>
         <TextField 
           onChange={this.handleFieldChange} 
           name="email"
           type="email"
           label="E-mail"
+          pattern= "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"
           value={this.state.email}
         />
         <TextField
@@ -53,7 +55,7 @@ class LoginPage extends Component {
           label="Password"
           value={this.state.password}
         />
-        <ButtonCustom onClick={() => this.signIn()}> LOGIN </ButtonCustom>
+        <ButtonCustom type="submit"> LOGIN </ButtonCustom>
       </LoginWrapper>
     );
   }

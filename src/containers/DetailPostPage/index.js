@@ -1,23 +1,24 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPostDetail, createComment, voteComment } from  '../../actions/posts'
+import { getPostDetail, createComment, voteComment } from '../../actions/posts'
 import { push } from 'connected-react-router';
 import { routes } from '../Router';
 import styled from 'styled-components'
 import { withStyles, TextField, TextareaAutosize, Button } from '@material-ui/core';
 import { ArrowUpward, ArrowDownward } from '@material-ui/icons'
 import { red } from '@material-ui/core/colors';
-import {ButtonCustom} from '../../style/style';
-
+import { ButtonCustom } from '../../style/style';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { classes } from '../../style/theme';
 
 const styles = theme => ({
     root: {
-      paddingTop: 1,
-      paddingBottom: 1,
+        paddingTop: 1,
+        paddingBottom: 1,
     },
 });
-
 const BoxComment = styled.div`
 `
 const BoxButton = styled.div`
@@ -35,31 +36,26 @@ const BoxVoteComment = styled.div`
     flex-direction: column;
     justify-content: space-between;
 `
-const CommentMade = styled.div`
-    border: 1px solid black;
-    margin-bottom: 15px;
+const CommentMade = styled(Card)`
+    margin: 9px;
 `
 const HeaderAndFooterBox = styled.div`
     background-color: #0d47a1;
     color: white;
     height: 40px;
-    border: 1px solid black;
     display: flex;
     flex-direction: row;
     align-items: center;
-`
-const DivVote = styled(HeaderAndFooterBox)`
-
+    padding-left: 9px;
 `
 const DivComment = styled.div`
     min-height: 80px;
-    border: 1px solid black;
+    padding-left: 9px;
 `
 const SpanUserLogged = styled.span`
     color: #2196f3;
     text-decoration: underline;
 `
-
 class DetailPost extends Component {
     constructor(props) {
         super(props);
@@ -67,7 +63,7 @@ class DetailPost extends Component {
             comment: ''
         }
     }
-    
+
     componentDidMount() {
         const token = window.localStorage.getItem('token')
 
@@ -76,7 +72,7 @@ class DetailPost extends Component {
         }
 
         if (token && this.props.getPostDetail) {
-            this.props.getPostDetail(this.props.post.id) 
+            this.props.getPostDetail(this.props.post.id)
         }
 
     }
@@ -107,11 +103,11 @@ class DetailPost extends Component {
                 </div>
                 <BoxComment>
                     <p> Comentar como <SpanUserLogged> {userLogged} </SpanUserLogged></p>
-                    <TextareaAutosizeCustom 
+                    <TextareaAutosizeCustom
                         aria-label="maximun height"
                         rowsMin={6}
-                        rowsMax={15} 
-                        placeholder="Deixe o seu comentário." 
+                        rowsMax={15}
+                        placeholder="Deixe o seu comentário."
                         onChange={this.handleOnInput}
                     />
                     <BoxButton>
@@ -121,27 +117,27 @@ class DetailPost extends Component {
                 <BoxVoteComment>
                     {this.props.post.comments && this.props.post.comments.map(comment => {
                         return (
-                            <CommentMade>
-                                <HeaderAndFooterBox>
-                                    <p> {comment.username}</p>
-                                </HeaderAndFooterBox>
-                                <DivComment>
-                                    <p> {comment.text}</p>
-                                </DivComment>
-                                <HeaderAndFooterBox>
-                                    <ArrowUpward
-                                        onClick={() => this.onClickLike(this.props.post.id, comment.id, comment.userVoteDirection)}
-                                        color={ comment.userVoteDirection === 1 ? 'action' : 'inherit'}
-                                    />
-                                    <span>{Math.abs(comment.votesCount)}</span>
-                                    <ArrowDownward 
-                                        color={ comment.userVoteDirection === -1 ? 'action' : 'inherit'} 
-                                        onClick={() => this.onClickDeslike(this.props.post.id, comment.id, comment.userVoteDirection)}
-                                    />
-                                </HeaderAndFooterBox>
-                           </CommentMade>
-                        ) 
-                    })}                   
+                            <CommentMade className={classes.card}>
+                                    <HeaderAndFooterBox>
+                                        <p> {comment.username}</p>
+                                    </HeaderAndFooterBox>
+                                    <DivComment>
+                                        <p> {comment.text}</p>
+                                    </DivComment>
+                                    <HeaderAndFooterBox>
+                                        <ArrowUpward
+                                            onClick={() => this.onClickLike(this.props.post.id, comment.id, comment.userVoteDirection)}
+                                            color={comment.userVoteDirection === 1 ? 'action' : 'inherit'}
+                                        />
+                                        <span>{Math.abs(comment.votesCount)}</span>
+                                        <ArrowDownward
+                                            color={comment.userVoteDirection === -1 ? 'action' : 'inherit'}
+                                            onClick={() => this.onClickDeslike(this.props.post.id, comment.id, comment.userVoteDirection)}
+                                        />
+                                    </HeaderAndFooterBox>
+                            </CommentMade>
+                        )
+                    })}
                 </BoxVoteComment>
             </div>
         )
