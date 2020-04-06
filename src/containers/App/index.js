@@ -8,7 +8,23 @@ import { createBrowserHistory } from "history";
 import { createStore, applyMiddleware, compose } from "redux";
 import { generateReducers } from "../../reducers";
 import { routerMiddleware } from "connected-react-router";
+import Menu from "../Menu";
+import styled from "styled-components";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import AppBar from '@material-ui/core/AppBar';
+import {classes} from '../../style/theme';
 
+const PageContent = styled(Card)`
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+`
+const Footer = styled(AppBar)`
+  display: flex;
+  align-items: center;
+  padding: 19px;
+`
 export const history = createBrowserHistory();
 
 const middlewares = [
@@ -24,7 +40,15 @@ export const App = () => (
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Router history={history} />
+      <Menu />
+      <PageContent className={classes.card}>
+        <CardContent>
+          <Router history={history} />
+        </CardContent>
+      </PageContent>
+      <Footer position="static" color="primary">
+        <strong>Andrius - Nauara @4eddit</strong>
+      </Footer>
     </MuiThemeProvider>
   </Provider>
 );
